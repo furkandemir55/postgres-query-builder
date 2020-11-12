@@ -1,0 +1,22 @@
+{
+  "name": "postgres-query-builder",
+  "version": "1.0.0",
+  "description": "Simple query builder for postgres, very limited usage at the moment.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/furkandemir55/postgres-query-builder.git"
+  },
+  "author": "Furkan Demir",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/furkandemir55/postgres-query-builder/issues"
+  },
+  "homepage": "https://github.com/furkandemir55/postgres-query-builder#readme",
+  "dependencies": {
+    "pg": "^8.5.0"
+  }
+}
