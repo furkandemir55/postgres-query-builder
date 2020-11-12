@@ -14,23 +14,23 @@ class QueryBuilder {
         if (typeof options === 'undefined' && typeof tableName === 'string') result = await query(`SELECT * FROM ${tableName}`)
         else {
             if (typeof tableName === 'object') options = tableName
-            const table = (options.table) ? options.table : tableName
-            const columns = (options.columns) ? options.columns.join(', ') : '*'
+            const table = (options.from) ? options.from : tableName
+            const columns = (options.select) ? options.select.join(', ') : '*'
             let conditions = '';
-            if (options.conditions) {
+            if (options.where) {
                 conditions = 'WHERE '
-                for (const [index, condition] of Object.keys(options.conditions).entries()) {
-                    console.log(condition)
-                    const operator = options.conditions[condition].split(' ')[0]
+                for (const [index, condition] of Object.keys(options.where).entries()) {
+                    const operator = options.where[condition].split(' ')[0]
                     conditions += `${condition} ${operator} $${index + 1}`
-                    if (index < Object.keys(options.conditions).length - 1) conditions += ' AND '
+                    if (index < Object.keys(options.where).length - 1) conditions += ' AND '
                 }
             }
-            const orderBy = (options.order) ? ((typeof options.order === 'string') ? `ORDER BY ${options.order}` : `ORDER BY ${options.order.join(', ')}`) : ''
-            const groupBy = (options.group) ? ((typeof options.group === 'string') ? `GROUP BY ${options.group}` : `GROUP BY ${options.group.join(', ')}`) : ''
+            const orderBy = (options.orderBy) ? ((typeof options.orderBy === 'string') ? `ORDER BY ${options.orderBy}` : `ORDER BY ${options.orderBy.join(', ')}`) : ''
+            const groupBy = (options.groupBy) ? ((typeof options.groupBy === 'string') ? `GROUP BY ${options.groupBy}` : `GROUP BY ${options.groupBy.join(', ')}`) : ''
             const limit = (options.limit) ? `LIMIT ${options.limit}` : ''
+            // console.log(`SELECT ${columns} FROM ${table} ${conditions} ${orderBy} ${groupBy} ${limit}`)
             result = await this.query(`SELECT ${columns} FROM ${table} ${conditions} ${orderBy} ${groupBy} ${limit}`,
-                (options.conditions) ? Object.values(options.conditions).map(condition => condition.split(' ')[1]) : [])
+                (options.where) ? Object.values(options.where).map(condition => condition.split(' ')[1]) : [])
         }
 
         return result.rows;
