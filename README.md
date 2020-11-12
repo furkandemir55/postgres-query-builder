@@ -6,6 +6,23 @@ Returns the rows. (Promise object)
 
 There is no error handling (yet).
 
+# example usage
+
+```
+const PostgresQueryBuilder = require('postgres-query-builder');
+const query = new PostgresQueryBuilder({
+    user: <username>,
+    host: <host>,
+    database: <dbname>,
+    password: <password>,
+    port: 5432,
+})
+
+query.fetch('user', {where: {id: '> 5', name: '= Joe'}}).then(result=>
+    doSomething()...
+)
+
+```
 
 # examples
 ```
