@@ -3,9 +3,8 @@ class QueryBuilder {
         const pool = new (require('pg').Pool)(options);
         this.query = require('util').promisify(pool.query).bind(pool);
         this.promisePoolEnd = require('util').promisify(pool.end).bind(pool);
-        process.on('SIGINT', () => {
+        process.on('beforeExit', () => {
             this.promisePoolEnd();
-            process.exit()
         });
     }
 
