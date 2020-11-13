@@ -10,7 +10,7 @@ class QueryBuilder {
 
     fetch = async (tableName, options) => {
         let result;
-        if (typeof options === 'undefined' && typeof tableName === 'string') result = await query(`SELECT * FROM ${tableName}`)
+        if (typeof options === 'undefined' && typeof tableName === 'string') result = await this.query(`SELECT * FROM ${tableName}`)
         else {
             if (typeof tableName === 'object') options = tableName
             const table = (options.from) ? options.from : tableName

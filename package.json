@@ -1,6 +1,6 @@
 {
   "name": "postgres-query-builder",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple query builder for postgres, very limited usage at the moment.",
   "main": "index.js",
   "scripts": {
@@ -17,7 +17,6 @@
   },
   "homepage": "https://github.com/furkandemir55/postgres-query-builder#readme",
   "dependencies": {
-    "np": "^7.0.0",
     "pg": "^8.5.0"
   }
 }
