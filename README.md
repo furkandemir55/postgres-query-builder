@@ -4,7 +4,6 @@ Simple query builder for select statements in postgresql.
 
 Returns the rows. (Promise object)
 
-There is no error handling (yet).
 
 # example usage
 
@@ -39,3 +38,20 @@ query.fetch('user', {where: {id: '> 5', name: '= Joe'}, orderBy: 'name', groupBy
 query.fetch({from: 'user', where: {id: '> 5', name: '= Joe'}, orderBy: ['name']})
 // SELECT * FROM user WHERE id > $1 AND name = $2 ORDER BY name
 ```
+
+# options
+**from:** table name *'user_login'*
+
+**select:** if not defined selects all columns. Can be string or array of strings.
+
+**where:** {id: '=10'} becomes *WHERE id = 10*
+
+{id: '>10', city:'=Antalya'} becomes *WHERE id > 10 AND city = Antalya*
+
+TODO: OR Statements
+
+**groupBy:** GROUP BY columns. Can be string or array of strings.
+
+**orderBy:** ORDER BY columns. Can be string or array of strings.
+
+**limit**: Row limit.
