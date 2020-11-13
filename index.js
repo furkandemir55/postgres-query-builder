@@ -28,7 +28,7 @@ class QueryBuilder {
             const groupBy = (options.groupBy) ? ((typeof options.groupBy === 'string') ? `GROUP BY ${options.groupBy}` : `GROUP BY ${options.groupBy.join(', ')}`) : ''
             const limit = (options.limit) ? `LIMIT ${options.limit}` : ''
             // console.log(`SELECT ${columns} FROM ${table} ${conditions} ${orderBy} ${groupBy} ${limit}`)
-            result = await this.query(`SELECT ${columns} FROM ${table} ${conditions} ${orderBy} ${groupBy} ${limit}`,
+            result = await this.query(`SELECT ${columns} FROM ${table} ${conditions} ${groupBy} ${orderBy} ${limit}`,
                 (options.where) ? Object.values(options.where).map(condition => condition.split(' ')[1]) : [])
         }
 
